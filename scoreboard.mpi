@@ -1,0 +1,26 @@
+@succ score-adduser={if:{eq:{&arg},{null:}},No user created!,{null:{store:0,{&arg}/win,{loc:this}},{store:0,{&arg}/lose,{loc:this}},{store:0,{&arg}/draw,{loc:this}}, {store:{add:1,{prop:/senses/desc#,{loc:this}}},/senses/desc#,{loc:this}},{store:*{&arg}: {subst:{lit:{prop:USERNAME/win,this}/{prop:USERNAME/lose,this}/{prop:USERNAME/draw,this}},USERNAME,{&arg}} ,/senses/desc#/{prop:/senses/desc#,{loc:this}},{loc:this}}}User {&arg} created}
+
+
+(defmacro winlosedraw-code (username)
+   `(prop ,username win (this)) 
+   `(prop ,username lose (this))
+   `(prop ,username draw (this)
+
+@succ score-w={if:{eq:{&arg},{null:}},,You add a win to {&arg}'s score!{null:{store:{add:1,{prop:{&arg}/win}},{&arg}/win,{loc:this}}}}
+@osucc score-w=adds a win to {&arg}'s score.
+
+@succ score-l={if:{eq:{&arg},{null:}},,You add a loss to {&arg}'s score.{null:{store:{add:1,{prop:{&arg}/lose}},{&arg}/lose,{loc:this}}}}
+@osucc score-l=adds a loss to {&arg}'s score.
+
+@succ score-d={if:{eq:{&arg},{null:}},,You add a draw to {&arg}'s score.{null:{store:{add:1,{prop:{&arg}/draw}},{&arg}/draw,{loc:this}}}}
+@osucc score-d=adds a draw to {&arg}'s score.
+
+
+@succ score-rw={if:{eq:{&arg},{null:}},,You remove a win from {&arg}'s score.{null:{store:{subt:{prop:{&arg}/win},1},{&arg}/win,{loc:this}}}}
+@osucc score-rw=removes a win from {&arg}'s score.
+
+@succ score-rl={if:{eq:{&arg},{null:}},,You remove a loss from {&arg}'s score.{null:{store:{subt:{prop:{&arg}/lose},1},{&arg}/lose,{loc:this}}}}
+@osucc score-rl=removes a loss from {&arg}'s score.
+
+@succ score-rd={if:{eq:{&arg},{null:}},,You remove a draw from {&arg}'s score.{null:{store:{subt:{prop:{&arg}/draw},1},{&arg}/draw,{loc:this}}}}
+@osucc score-rd=removes a draw from {&arg}'s score.
